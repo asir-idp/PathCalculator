@@ -26,12 +26,22 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<version>11.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
 			<version>11.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
+			<version>11.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
 			<version>11.0.1</version>
 		</dependency>
 		<dependency>
@@ -44,9 +54,14 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>fvarrui.maven</groupId>
+				<groupId>io.github.fvarrui</groupId>
 				<artifactId>javapackager</artifactId>
-				<version>0.8.4</version>
+				<version>1.2.0</version>
+				<configuration>
+					<bundleJre>true</bundleJre>
+					<mainClass>${exec.mainClass}</mainClass>
+					<generateInstaller>false</generateInstaller>
+				</configuration>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -54,15 +69,15 @@
 							<goal>package</goal>
 						</goals>
 						<configuration>
-							<forceJreOptimization>true</forceJreOptimization>
-							<bundleJre>true</bundleJre>
-							<mainClass>${exec.mainClass}</mainClass>
+							<platform>windows</platform>
+							<createZipball>true</createZipball>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 
 	<pluginRepositories>
 		<pluginRepository>
